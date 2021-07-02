@@ -1,5 +1,5 @@
 {
-    "name": "spatie/laravel-artisan-dispatchable",
+    "name": "nguyenhiep/laravel-artisan-dispatchable",
     "description": "Dispatch Laravel jobs via Artisan",
     "keywords": [
         "spatie",
@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": ">=7.4",
         "illuminate/console": "^8.46",
         "illuminate/contracts": "^8.46",
         "spatie/laravel-package-tools": "^1.4.3",

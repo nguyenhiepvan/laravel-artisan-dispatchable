@@ -12,8 +12,11 @@ use Spatie\ArtisanDispatchable\Exceptions\RequiredOptionMissing;
 
 class ArtisanJob
 {
-    public function __construct(protected string $jobClassName)
+    protected string $jobClassName;
+
+    public function __construct(string $jobClassName)
     {
+        $this->jobClassName = $jobClassName;
     }
 
     public function getFullCommand(): string
@@ -29,7 +32,7 @@ class ArtisanJob
 
         $shortClassName = class_basename($this->jobClassName);
 
-        $prefix = config('artisan-dispatchable.command_name_prefix');
+        $prefix  = config('artisan-dispatchable.command_name_prefix');
         $command = Str::of($shortClassName)->kebab()->beforeLast('-job');
 
         return $prefix
@@ -45,12 +48,12 @@ class ArtisanJob
     protected function getOptionString(): string
     {
         $parameters = (new ReflectionClass($this->jobClassName))
-            ->getConstructor()
-            ?->getParameters() ?? [];
+                ->getConstructor()
+                ->getParameters() ?? [];
 
         return collect($parameters)
-            ->map(fn (ReflectionParameter $parameter) => $parameter->name)
-            ->map(fn (string $argumentName) => '{--' . Str::camel($argumentName) . '=}')
+            ->map(fn(ReflectionParameter $parameter) => $parameter->name)
+            ->map(fn(string $argumentName) => '{--' . Str::camel($argumentName) . '=}')
             ->add('{--queued}')
             ->implode(' ');
     }
@@ -69,8 +72,8 @@ class ArtisanJob
     protected function constructorValues(ClosureCommand $command): array
     {
         $parameters = (new ReflectionClass($this->jobClassName))
-            ->getConstructor()
-            ?->getParameters();
+                ->getConstructor()
+                ->getParameters() ?? [];
 
         if (is_null(($parameters))) {
             return [];
@@ -86,7 +89,7 @@ class ArtisanJob
                     throw RequiredOptionMissing::make($this->getCommandName(), $parameterName);
                 }
 
-                $parameterType = $parameter->getType()?->getName();
+                $parameterType = $parameter->getType()->getName() ?? "";
 
                 if (is_a($parameterType, Model::class, true)) {
                     $model = $parameterType::find($value);
@@ -103,7 +106,12 @@ class ArtisanJob
             ->all();
     }
 
-    protected function getDefaultForProperty(string $name): mixed
+    /**
+     * @param string $name
+     * @return mixed|null
+     * @throws \ReflectionException
+     */
+    protected function getDefaultForProperty(string $name)
     {
         $reflectionClass = new ReflectionClass($this->jobClassName);
 
