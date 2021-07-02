@@ -6,9 +6,14 @@ use Tests\TestClasses\Jobs\BaseTestJob;
 
 class StringTestJob extends BaseTestJob
 {
+    public string $myString;
+    public string $anotherString;
+
     public function __construct(
-        public string $myString,
-        public string $anotherString
+        string $myString,
+        string $anotherString
     ) {
+        $this->anotherString = $anotherString;
+        $this->myString      = $myString;
     }
 }

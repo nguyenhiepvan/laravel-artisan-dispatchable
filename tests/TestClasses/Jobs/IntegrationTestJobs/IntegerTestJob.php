@@ -6,8 +6,11 @@ use Tests\TestClasses\Jobs\BaseTestJob;
 
 class IntegerTestJob extends BaseTestJob
 {
+    public int $myInteger;
+
     public function __construct(
-        public int $myInteger,
+        int $myInteger
     ) {
+        $this->myInteger = $myInteger;
     }
 }

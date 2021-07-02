@@ -47,9 +47,9 @@ class ArtisanJob
 
     protected function getOptionString(): string
     {
-        $parameters = (new ReflectionClass($this->jobClassName))
-                ->getConstructor()
-                ->getParameters() ?? [];
+        $instance   = (new ReflectionClass($this->jobClassName))
+            ->getConstructor();
+        $parameters = $instance ? $instance->getParameters() ?? [] : [];
 
         return collect($parameters)
             ->map(fn(ReflectionParameter $parameter) => $parameter->name)
@@ -71,9 +71,9 @@ class ArtisanJob
 
     protected function constructorValues(ClosureCommand $command): array
     {
-        $parameters = (new ReflectionClass($this->jobClassName))
-                ->getConstructor()
-                ->getParameters() ?? [];
+        $instance   = (new ReflectionClass($this->jobClassName))
+            ->getConstructor();
+        $parameters = $instance ? $instance->getParameters() ?? [] : [];
 
         if (is_null(($parameters))) {
             return [];
@@ -89,7 +89,8 @@ class ArtisanJob
                     throw RequiredOptionMissing::make($this->getCommandName(), $parameterName);
                 }
 
-                $parameterType = $parameter->getType()->getName() ?? "";
+                $type          = $parameter->getType();
+                $parameterType = $type ? $type->getName() ?? "" : "";
 
                 if (is_a($parameterType, Model::class, true)) {
                     $model = $parameterType::find($value);

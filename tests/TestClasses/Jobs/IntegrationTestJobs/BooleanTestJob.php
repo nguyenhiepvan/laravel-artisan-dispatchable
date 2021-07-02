@@ -6,9 +6,14 @@ use Tests\TestClasses\Jobs\BaseTestJob;
 
 class BooleanTestJob extends BaseTestJob
 {
+    public bool $firstBoolean;
+    public bool $secondBoolean;
+
     public function __construct(
-        public bool $firstBoolean,
-        public bool $secondBoolean,
+        bool $firstBoolean,
+        bool $secondBoolean
     ) {
+        $this->secondBoolean = $secondBoolean;
+        $this->firstBoolean  = $firstBoolean;
     }
 }

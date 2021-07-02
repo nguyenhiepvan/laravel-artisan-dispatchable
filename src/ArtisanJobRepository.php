@@ -28,6 +28,7 @@ class ArtisanJobRepository
         if (! is_null($cachedDispatchableJobs)) {
             return collect($cachedDispatchableJobs)
                 ->map(function (array $jobProperties) {
+                    $jobProperties= array_values($jobProperties);
                     return new DiscoveredArtisanJob(...$jobProperties);
                 });
         }

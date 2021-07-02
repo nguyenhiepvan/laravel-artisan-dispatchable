@@ -6,8 +6,11 @@ use Tests\TestClasses\Jobs\BaseTestJob;
 
 class ArgumentWithoutTypeTestJob extends BaseTestJob
 {
+    public $argumentWithoutType;
+
     public function __construct(
-        public $argumentWithoutType
+        $argumentWithoutType
     ) {
+        $this->argumentWithoutType = $argumentWithoutType;
     }
 }

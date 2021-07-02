@@ -66,7 +66,6 @@ class TestCase extends Orchestra
     protected function deleteCachedJobsFile()
     {
         $cache = config('artisan-dispatchable.cache_file');
-
         if (file_exists($cache)) {
             unlink($cache);
         }

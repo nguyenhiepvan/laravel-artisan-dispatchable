@@ -7,7 +7,10 @@ use Tests\TestClasses\Models\TestModel;
 
 class ModelTestJob extends BaseTestJob
 {
-    public function __construct(public TestModel $testModel)
+    public TestModel $testModel;
+
+    public function __construct(TestModel $testModel)
     {
+        $this->testModel = $testModel;
     }
 }
