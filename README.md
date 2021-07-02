@@ -55,7 +55,7 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require spatie/laravel-artisan-dispatchable
+composer require nguyenhiep/laravel-artisan-dispatchable
 ```
 
 Optionally, you can publish the config file with:
