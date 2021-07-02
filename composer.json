@@ -1,5 +1,5 @@
 {
-    "name": "nguyenhiep/laravel-artisan-dispatchable",
+    "name": "nguyenhiepvan/laravel-artisan-dispatchable",
     "description": "Dispatch Laravel jobs via Artisan",
     "keywords": [
         "spatie",
@@ -17,8 +17,6 @@
     ],
     "require": {
         "php": ">=7.4",
-        "illuminate/console": "^8.46",
-        "illuminate/contracts": "^8.46",
         "spatie/laravel-package-tools": "^1.4.3",
         "spatie/phpunit-snapshot-assertions": "^4.2"
     },
@@ -27,8 +25,7 @@
         "nunomaduro/collision": "^5.3",
         "orchestra/testbench": "^6.15",
         "phpunit/phpunit": "^9.3",
-        "spatie/laravel-ray": "^1.9",
-        "vimeo/psalm": "^4.4"
+        "spatie/laravel-ray": "^1.9"
     },
     "autoload": {
         "psr-4": {
