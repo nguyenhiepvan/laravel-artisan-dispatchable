@@ -1,5 +1,5 @@
 {
-    "name": "nguyenhiepvan/laravel-artisan-dispatchable",
+    "name": "nguyenhiep/laravel-artisan-dispatchable",
     "description": "Dispatch Laravel jobs via Artisan",
     "keywords": [
         "spatie",
